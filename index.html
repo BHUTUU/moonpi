@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Moon 🌑</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="containter">
+        <div class="moon">
+            <h1 class="headofmoon">The Moon</h1>
+            <div class="button">
+                <label for="moonbutton">Select the Resolution for the moon Image:</label>
+                <select name="moonbutton" id="moonbutton" onchange="updateMoon()">
+                    <option value="1">144p</option>
+                    <option value="2">240p</option>
+                    <option value="3">360p</option>
+                    <option value="4">480p</option>
+                    <option value="5">720p</option>
+                    <option value="6">1080p</option>
+                </select>
+            </div>
+            <div id="imagespace" class="imagespace">
+                <img src="1.jpeg" alt="moon image missing :(">
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateMoon() {
+            bxt=false;
+            var id1 = localStorage.getItem("id1");
+            var id2 = localStorage.getItem("id2");
+            if (id1) {
+                clearInterval(id1);
+            }
+            if (id2) {
+                clearInterval(id2);
+            }
+            var selection = document.getElementById("moonbutton");
+            var selectedValue = selection.value;
+            var imagespace = document.getElementById("imagespace");
+            // console.log(selectedValue);
+            if (selectedValue == 1) {
+                imagespace.innerHTML = '<img src="1.jpeg" alt="moon image missing :(">';
+            } else if (selectedValue == 2) {
+                imagespace.innerHTML = '<img src="2.jpeg" alt="moon image missing :(">';
+            } else if (selectedValue == 3) {
+                imagespace.innerHTML = '<img src="3.jpeg" alt="moon image missing :(">';
+            } else if (selectedValue == 4) {
+                imagespace.innerHTML = '<img src="4.jpeg" alt="moon image missing :(">';
+            }
+            else if (selectedValue == 5) {
+                imagespace.innerHTML = '<img style="height: 500px; width: 300px;" src="5.webp" alt="moon image missing :(">';
+            } else if (selectedValue == 6) {
+                imagespace.innerHTML = '<img id="im1" src="6a.jpg" alt="moon image missing :("><img id="im2" src="6c.jpg" alt="moon image missing :(">';
+                bxt=true;
+            }
+            id1 = setInterval(() =>{
+                if(bxt==true){
+                    imagespace.style="filter: blur(10px);";
+                }
+                }, 200)
+            id2 = setInterval(() =>{
+            if(bxt==true) {
+                imagespace.style="filter: blur(0px);";
+            }
+            }, 400)
+            localStorage.setItem("id1", id1);
+            localStorage.setItem("id2", id2);
+        }
+    </script>
+</body>
+</html>
